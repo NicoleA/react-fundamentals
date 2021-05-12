@@ -4,10 +4,8 @@
 <body>
   <div id="root"></div>
 
-  <!-- 💣 remove this line
   <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
-  💣 remove this line -->
 
   <script type="module">
     const rootElement = document.getElementById('root')
@@ -15,14 +13,55 @@
     // You're going to re-implement this code using React!
     // 💣 So go ahead and delete this implementation (or comment it out for now)
     // These three lines are similar to React.createElement
-    const element = document.createElement('div')
-    element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
-    element.className = 'container' // 💰 in React, this is also called the "className" prop
+    // const element = document.createElement('div')
+    // element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
+    // element.className = 'container' // 💰 in React, this is also called the "className" prop
     // This is similar to ReactDOM.render
-    rootElement.append(element)
+    // rootElement.append(element)
 
     // 🐨 Please re-implement the regular document.createElement code above
     // with these React API calls
     // 💰 The example in the markdown file should be a good hint for you.
+    const elementProps = {children: 'Hello world!'};
+    const elementType = 'div';
+    const reactElement = React.createElement(elementType, elementProps);
+    ReactDOM.render(reactElement, rootElement);
+  </script>
+
+<!-- EXTRA CREDIT -->
+  <div id="root2"></div>
+
+  <script type="module">
+    // See if you can figure out how to write the JavaScript + React code to generate this DOM output:
+    // <body>
+    //   <div id="root">
+    //     <div class="container">
+    //       <span>Hello</span>
+    //       <span>World</span>
+    //     </div>
+    //   </div>
+    // </body>
+
+    // Get the root element where we want to append our content.
+    const rootElement = document.getElementById('root2')
+
+    // Create the span elements.
+    const elProps = [
+      {key:1,children:'Hello'},
+      {key:2,children:'World'},
+    ];
+    const spans = elProps.map((props) =>
+      React.createElement('span', props)
+    );
+    
+    // Create the container div with the span elements as children.
+    const containerElement = React.createElement('div', {
+      className: 'container',
+      children: spans,
+    });
+
+    // Render the elements to the DOM.
+    ReactDOM.render(containerElement, rootElement);
+
   </script>
 </body>
